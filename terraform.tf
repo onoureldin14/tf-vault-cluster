@@ -1,10 +1,10 @@
 terraform {
-    backend "s3" {
-        bucket         = "terraform-state-7bqml8"
-        key            = "tf-vault-cluster/terraform.tfstate"
-        region         = "eu-west-2"
-        dynamodb_table = "terraform-app-state-lock"
-    }
+	backend "remote" {
+		organization = "Onoureldin"
+		workspaces {
+			name = "tf-vault-cluster"
+		}
+	}
   required_providers {
     hcp = {
       source = "hashicorp/hcp"
@@ -13,7 +13,11 @@ terraform {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 5.1.0"
-    }   
+    }
+    tfe = {
+      source  = "hashicorp/tfe"
+      version = "~> 0.45.0"
+    }       
   }
   required_version = "~> 1.2"
 }

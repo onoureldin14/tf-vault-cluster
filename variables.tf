@@ -1,3 +1,34 @@
+variable "aws_access_key" {
+  description = "AWS Access Key"
+  type        = string
+  sensitive   = true  
+}
+
+variable "aws_secret_key" {
+  description = "AWS Secret Key"
+  type        = string
+  sensitive   = true
+}
+
+
+variable "tfc_token" {
+  description = "Token for authenticating with Terraform Cloud"
+  type        = string
+  sensitive   = true
+}
+
+variable "tfc_hostname" {
+  type        = string
+  default     = "app.terraform.io"
+  description = "The hostname of the TFC or TFE instance."
+}
+
+variable "tfc_organization_name" {
+  type          = string
+  description   = "The name of your Terraform Cloud organization."
+  default       = "Onoureldin"
+}
+
 variable "hvn_id" {
   description = "The ID of the HCP HVN."
   type        = string
