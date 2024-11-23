@@ -1,7 +1,7 @@
 variable "aws_access_key" {
   description = "AWS Access Key"
   type        = string
-  sensitive   = true  
+  sensitive   = true
 }
 
 variable "aws_secret_key" {
@@ -24,9 +24,9 @@ variable "tfc_hostname" {
 }
 
 variable "tfc_organization_name" {
-  type          = string
-  description   = "The name of your Terraform Cloud organization."
-  default       = "Onoureldin"
+  type        = string
+  description = "The name of your Terraform Cloud organization."
+  default     = "Onoureldin"
 }
 
 variable "hvn_id" {
