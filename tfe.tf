@@ -5,7 +5,7 @@ resource "tfe_variable_set" "vault_config" {
 }
 
 resource "tfe_workspace" "tf_vault_config" {
-  name = "tf-vault-config"
+  name         = "tf-vault-config"
   organization = var.tfc_organization_name
 }
 
