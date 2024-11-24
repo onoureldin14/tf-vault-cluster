@@ -1,5 +1,10 @@
+provider "google" {
+  project = var.google_project_id
+  region  = var.google_region
+}
+
 provider "aws" {
-  region     = var.region
+  region = var.region
 }
 
 provider "hcp" {}
