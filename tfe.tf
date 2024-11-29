@@ -11,13 +11,23 @@ resource "tfe_workspace" "tf_vault_config" {
   organization = var.tfc_organization_name
 }
 
+resource "tfe_variable" "vault_public_address_variable" {
+  count           = var.tf_cloud_backend == true ? 1 : 0
+  key             = "vault_public_address"
+  value           = var.vault_cluster_gcp ? google_cloud_run_service.default[0].status[0].url : hcp_vault_cluster.hcp_vault[0].vault_public_endpoint_url
+  category        = "terraform"
+  sensitive       = true
+  description     = "Variable of the public endpoint URL of the HCP Vault cluster"
+  variable_set_id = tfe_variable_set.vault_config[0].id
+}
+
 resource "tfe_variable" "vault_public_address" {
   count           = var.tf_cloud_backend == true ? 1 : 0
   key             = "VAULT_ADDR"
   value           = var.vault_cluster_gcp ? google_cloud_run_service.default[0].status[0].url : hcp_vault_cluster.hcp_vault[0].vault_public_endpoint_url
   category        = "env"
   sensitive       = true
-  description     = "Value of the public endpoint URL of the HCP Vault cluster"
+  description     = "Env Value of the public endpoint URL of the HCP Vault cluster"
   variable_set_id = tfe_variable_set.vault_config[0].id
 }
 
