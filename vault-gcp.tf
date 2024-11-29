@@ -49,6 +49,7 @@ resource "google_kms_key_ring_iam_member" "vault" {
 resource "time_sleep" "wait_for_kms_and_bucket" {
   count           = var.initial_terraform_run && var.vault_cluster_gcp ? 1 : 0
   create_duration = "180s" # Wait for 3 minutes for crypto key to become enabled...
+depends_on = ["google_kms_crypto_key.vault"]
 }
 
 resource "google_cloud_run_service" "default" {
